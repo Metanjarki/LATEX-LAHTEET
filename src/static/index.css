@@ -118,6 +118,23 @@
     color: var(--color-red-dark);
 }
 
+.source button.edit {
+    border: none;
+    background: none;
+    color: var(--color-red);
+    padding: 0.6em 0.8em;
+    background-color: white;
+    border-radius: var(--border-radius);
+    transition:
+        color var(--transition-duration) ease-out,
+        opacity var(--transition-duration) ease-out;
+    opacity: 0;
+}
+
+.source button.edit:hover {
+    color: var(--color-red-dark);
+}
+
 .source .buttons {
     position: absolute;
     top: 0;
