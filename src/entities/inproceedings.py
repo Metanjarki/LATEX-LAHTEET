@@ -19,6 +19,29 @@ class Inproceedings(Source):
         self.volume = data["volume"]
         self.kind = "inproceedings"
 
+    def to_dict(self):
+        base = super().to_dict()
+        base.update(
+            {
+                "source_id": self.source_id,
+                "bibtex_key": self.bibtex_key,
+                "title": self.title,
+                "year": self.year,
+                "author": self.author,
+                "booktitle": self.booktitle,
+                "editor": self.editor,
+                "series": self.series,
+                "pages": self.pages,
+                "address": self.address,
+                "month": self.month,
+                "organization": self.organization,
+                "publisher": self.publisher,
+                "volume": self.volume,
+                "tags": self.tags,
+            }
+        )
+        return base
+
     def validate(self):
         super().validate()
 

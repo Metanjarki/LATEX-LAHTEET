@@ -9,6 +9,19 @@ class Book(Source):
         self.publisher = data["publisher"]
         self.kind = "book"
 
+    def to_dict(self):
+        base = super().to_dict()
+        base.update({
+                "source_id": self.source_id,
+                "bibtex_key": self.bibtex_key,
+                "title": self.title,
+                "year": self.year,
+                "author": self.author,
+                "publisher": self.publisher,
+                "tags": self.tags,
+        })
+        return base
+
     def validate(self):
         super().validate()
 

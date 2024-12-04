@@ -1,34 +1,41 @@
 /* NOTE: Kyseessä on index.html -templateen liittyvät tyylittelyt, ei pääasiallinen tyylitiedosto (main.css) */
 
 .modal-form {
-    opacity: 0;
-    pointer-events: none;
+    display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 50;
-    transition: opacity var(--transition-duration) ease-out;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    overflow-y: auto;
+    max-height: 80vh;
 }
 
 .modal-form.show {
-    opacity: 1;
-    pointer-events: initial;
+    display: block;
+}
+
+.modal-form .content {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+}
+
+.modal-form .content div {
+    margin-bottom: 10px;
 }
 
 .modal-form .inner {
-    background-color: white;
-    border-radius: var(--border-radius);
-    margin: 0 1em;
-    max-height: calc(100% - 1em);
-    max-width: calc(100% - 1em);
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 .modal-form .inner .top-row {
@@ -66,7 +73,17 @@
 .modal-form .top-row {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.modal-form .top-row .close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
 }
 
 .modal-form button[type='submit'] {

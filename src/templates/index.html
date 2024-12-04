@@ -12,7 +12,7 @@ endblock %} {% block body %}
 <div id="books">
     <div class="source-list">
         {% for source in sources %}
-        <article class="source">
+        <article class="source" onclick="fetchSourceDetails({{ source.source_id }})">
             <div class="info">
                 <div class="top-row">
                     <div id="title-{{ loop.index0 }}" class="title">
@@ -151,6 +151,44 @@ endblock %} {% block body %}
     </div>
 </form>
 
+<div id="source-details-modal" class="modal-form">
+    <div class="inner">
+        <div class="top-row">
+            <h2 id="modal-title">Lähteen tiedot</h2>
+            <button class="close" type="button" onclick="closeSourceDetails()">
+                <i class="fa-solid fa-x"></i>
+            </button>
+        </div>
+        <div id="modal-content" class="content"></div>
+    </div>
+</div>
+
+<script>
+    async function fetchSourceDetails(sourceId) {
+        try {
+            const response = await fetch(`/source/${sourceId}`);
+            if (!response.ok) throw new Error("Failed to fetch source details");
+            const sourceDetails = await response.json();
+
+            const modalContent = document.getElementById("modal-content");
+            modalContent.innerHTML = "";
+
+            for (const [key, value] of Object.entries(sourceDetails)) {
+                const detail = document.createElement("div");
+                detail.innerHTML = `<strong>${key}:</strong> ${value}`;
+                modalContent.appendChild(detail);
+            }
+
+            document.getElementById("source-details-modal").classList.add("show");
+        } catch (error) {
+            alert("Error fetching source details: " + error.message);
+        }
+    }
+
+    function closeSourceDetails() {
+        document.getElementById("source-details-modal").classList.remove("show");
+    }
+</script>
 <script>
     formFields = JSON.parse(`{{form_json|safe}}`);
 

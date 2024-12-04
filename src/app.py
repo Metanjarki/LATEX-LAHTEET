@@ -232,3 +232,19 @@ def download():
 def reset_db():
     truncate_db()
     return redirect("/")
+
+@app.route("/source/<int:source_id>", methods=["GET"])
+def get_source_details(source_id):
+    source_repo = SourceRepository(DatabaseService())
+    try:
+        source = source_repo.get_full()
+        source = next((s for s in source if s.source_id == source_id), None)
+
+        if not source:
+            return {"error": "Source not found"}, 404
+
+        return source.to_dict(), 200
+
+    except Exception as error:  # pylint: disable=broad-exception-caught
+        print(error)
+        return {"error": "Failed to fetch source details"}, 500

@@ -15,6 +15,25 @@ class Article(Source):
         self.month = data["month"]
         self.kind = "article"
 
+    def to_dict(self):
+        base = super().to_dict()
+        base.update(
+            {
+                "source_id": self.source_id,
+                "bibtex_key": self.bibtex_key,
+                "title": self.title,
+                "year": self.year,
+                "author": self.author,
+                "journal": self.journal,
+                "volume": self.volume,
+                "number": self.number,
+                "pages": self.pages,
+                "month": self.month,
+                "tags": self.tags,
+            }
+        )
+        return base
+
     def validate(self):
         super().validate()
 
