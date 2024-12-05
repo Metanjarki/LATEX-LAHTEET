@@ -23,4 +23,16 @@ content = {
         "fi": "BibTex -lähdehallintatyökalu",
         "en": "BibTex source management",
     },
+    "article": {
+        "fi": "Artikkeli",
+        "en": "Article",
+    },
+    "book": {
+        "fi": "Kirja",
+        "en": "Book",
+    },
+    "inproceedings": {
+        "fi": "Artikkeli conferenssijulkaisussa",
+        "en": "Inproceedings",
+    },
 }

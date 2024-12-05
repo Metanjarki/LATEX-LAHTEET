@@ -99,11 +99,9 @@ endblock %} {% block body %}
         <div class="content">
             <label for="add-field-type">Tyyppi</label>
             <select name="type" id="add-field-type">
-                <option value="book">Kirja</option>
-                <option value="article">Artikkeli</option>
-                <option value="inproceedings">
-                    Artikkeli konferenssijulkaisussa
-                </option>
+                <option value="book">{{content["book"][lang]}}</option>
+                <option value="article">{{content["article"][lang]}}</option>
+                <option value="inproceedings">{{content["inproceedings"][lang]}}</option>
             </select>
 
             <div id="add-form-fields"></div>
