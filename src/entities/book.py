@@ -23,7 +23,6 @@ class Book(Source):
         return base
 
     def validate(self):
-        super().validate()
-
         if len(self.publisher) == 0:
             raise UserInputError("Julkaisija vaaditaan")
+        super().validate()

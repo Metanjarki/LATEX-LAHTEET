@@ -43,10 +43,10 @@ class Inproceedings(Source):
         return base
 
     def validate(self):
-        super().validate()
-
         if len(self.booktitle) == 0:
             raise UserInputError("Kirjan otsikko vaaditaan")
 
         if len(self.volume) > 0 and not set(self.volume).issubset(set(digits)):
             raise UserInputError("Kentän nide on oltava numero")
+        
+        super().validate()

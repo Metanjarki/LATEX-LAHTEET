@@ -35,7 +35,7 @@ class Article(Source):
         return base
 
     def validate(self):
-        super().validate()
+        
 
         if len(self.journal) == 0:
             raise UserInputError("Julkaisu vaaditaan")
@@ -45,3 +45,4 @@ class Article(Source):
 
         if len(self.number) > 0 and not set(self.number).issubset(set(digits)):
             raise UserInputError("Kentän numero on oltava numero")
+        super().validate()
