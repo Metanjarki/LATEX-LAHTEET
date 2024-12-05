@@ -2,6 +2,7 @@ from typing import Optional
 
 from config import SCHEMA_NAME
 from entities.book import Book
+import repositories.source_repository
 
 
 class BookRepository:
@@ -58,5 +59,25 @@ class BookRepository:
                 "year": book.year,
                 "publisher": book.publisher,
                 "author": book.author,
+            },
+        )
+
+    def update(self, book):
+        book.validate()
+        repositories.source_repository.SourceRepository(self.database_service).update(
+            book
+        )
+
+        sql = f"""
+            UPDATE {SCHEMA_NAME}.source_book SET
+            publisher = :publisher
+
+            WHERE source_id = :source_id
+        """
+        self.database_service.execute(
+            sql,
+            {
+                "publisher": book.publisher,
+                "source_id": book.source_id,
             },
         )

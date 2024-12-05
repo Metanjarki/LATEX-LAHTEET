@@ -1,5 +1,6 @@
 from db_util import source_exists_by_id
 from util import UserInputError
+from content import content, combine
 
 
 class Tag:
@@ -10,7 +11,7 @@ class Tag:
 
     def validate(self):
         if len(self.name) == 0:
-            raise UserInputError("Nimi vaaditaan")
+            raise UserInputError(combine(content["name"], content["is_required"]))
 
         if not source_exists_by_id(self.source_id):
-            raise UserInputError(f"Lähdettä {self.source_id} ei olemassa")
+            raise UserInputError(content["error_source_not_found"])

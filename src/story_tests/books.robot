@@ -61,7 +61,7 @@ Cannot add book where year is not a number
     Input Publisher  Otava
     Publish Source
 
-    Page Should Contain Message  Julkaisuvuoden on oltava numero
+    Page Should Contain Message  Julkaisuvuosi on oltava numero
 
 *** Keywords ***
 Input Publisher

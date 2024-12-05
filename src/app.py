@@ -5,7 +5,7 @@ from flask import flash, json, redirect, render_template, request, send_file, se
 from bibtex_convert import to_bibtex
 from content import content
 from database_service import DatabaseService
-from db_util import truncate_db
+from db_util import truncate_db, source_exists_by_key, source_exists_by_id
 from entities.article import Article
 from entities.book import Book
 from entities.inproceedings import Inproceedings
@@ -17,7 +17,7 @@ from repositories.book_repository import BookRepository
 from repositories.inproceedings_repository import InproceedingsRepository
 from repositories.source_repository import SourceRepository
 from repositories.tag_repository import TagRepository
-from util import UserInputError
+from util import UserInputError, first_item
 
 
 @app.route("/", methods=["GET"])
@@ -25,6 +25,7 @@ def index_get():
     show_add_form = "show_add_form" in request.args
     form_json = get_fields_json()
     source_repo = SourceRepository(DatabaseService())
+    lang = session.get("lang", "fi")
 
     try:
         sources = source_repo.get()
@@ -33,26 +34,64 @@ def index_get():
             sources=sources,
             form_json=form_json,
             show_add_form=show_add_form,
-            lang=session.get("lang", "fi"),
+            lang=lang,
+            saved_fields_json=session.get("fields", "{}"),
             content=content,
             content_json=json.dumps(content),
         )
     except Exception as error:  # pylint: disable=broad-exception-caught
         flash(
-            "Lähteiden haku epäonnistui teknisen virheen takia, \
-            ota yhteyttä järjestelmänvalvojaan.",
+            content["error_common"][lang],
             "error",
         )
         print(error)
         return render_template("index.html")
 
 
+@app.route("/edit/<int:source_id>", methods=["GET"])
+def edit(source_id):
+    source_repo = SourceRepository(DatabaseService())
+    lang = session.get("lang", "fi")
+
+    source = first_item(source_repo.get_full(source_id))
+
+    if not source:
+        flash(content["source_not_found"][lang], "error")
+        return redirect("/")
+
+    session["fields"] = json.dumps(source.__dict__)
+    print(session["fields"])
+
+    return redirect(f"/?show_add_form&edit_id={source_id}")
+
+
 @app.route("/", methods=["POST"])
 def index_post():
     form = request.form
-    source_type = form["type"]
-    added_key = ""
-    #  TODO: Erillisiin funktioihin tämä
+    lang = session.get("lang", "fi")
+
+    session["fields"] = json.dumps(form)
+
+    source_type = form["kind"] if "kind" in form else ""
+    bibtex_key = form["bibtex_key"] if "bibtex_key" in form else ""
+    source_id = form["edit_id"] if "edit_id" in form else 0
+
+    editing = "edit_id" in form
+
+    error_redirect_path = f"/?show_add_form{f"&edit_id={source_id}" if editing else ""}"
+
+    if not editing and len(bibtex_key) == 0:
+        flash(f"{content["bibtex_key"][lang]} {content["is_required"][lang]}", "error")
+        return redirect(error_redirect_path)
+
+    if not editing and source_exists_by_key(bibtex_key):
+        flash(content["error_key_in_use"][lang], "error")
+        return redirect(error_redirect_path)
+
+    if editing and not source_exists_by_id(source_id):
+        flash(content["error_source_not_found"][lang], "error")
+        return redirect(error_redirect_path)
+
     book_repo = BookRepository(DatabaseService())
     article_repo = ArticleRepository(DatabaseService())
     inproceedings_repo = InproceedingsRepository(DatabaseService())
@@ -62,10 +101,8 @@ def index_post():
             case "book":
                 book = Book(
                     {
-                        "source_id": 0,
-                        "bibtex_key": (
-                            form["bibtex_key"] if "bibtex_key" in form else ""
-                        ),
+                        "source_id": source_id,
+                        "bibtex_key": bibtex_key,
                         "title": form["title"] if "title" in form else "",
                         "year": form["year"] if "year" in form else "",
                         "author": form["author"] if "author" in form else "",
@@ -74,16 +111,16 @@ def index_post():
                     }
                 )
 
-                book_repo.create(book)
-                added_key = book.bibtex_key
+                if editing:
+                    book_repo.update(book)
+                else:
+                    book_repo.create(book)
 
             case "article":
                 article = Article(
                     {
-                        "source_id": 0,
-                        "bibtex_key": (
-                            form["bibtex_key"] if "bibtex_key" in form else ""
-                        ),
+                        "source_id": source_id,
+                        "bibtex_key": bibtex_key,
                         "title": form["title"] if "title" in form else "",
                         "year": form["year"] if "year" in form else "",
                         "author": form["author"] if "author" in form else "",
@@ -96,17 +133,17 @@ def index_post():
                     }
                 )
 
-                article_repo.create(article)
-                added_key = article.bibtex_key
+                if editing:
+                    article_repo.update(article)
+                else:
+                    article_repo.create(article)
 
             case "inproceedings":
                 print("Creating Inproceedings-object")
                 inproceedings = Inproceedings(
                     {
-                        "source_id": 0,
-                        "bibtex_key": (
-                            form["bibtex_key"] if "bibtex_key" in form else ""
-                        ),
+                        "source_id": source_id,
+                        "bibtex_key": bibtex_key,
                         "title": form["title"] if "title" in form else "",
                         "year": form["year"] if "year" in form else "",
                         "author": form["author"] if "author" in form else "",
@@ -129,24 +166,27 @@ def index_post():
                     }
                 )
                 print("Adding inproceeding object")
-                inproceedings_repo.create(inproceedings)
-                added_key = inproceedings.bibtex_key
+
+                if editing:
+                    inproceedings_repo.update(inproceedings)
+                else:
+                    inproceedings_repo.create(inproceedings)
 
             case _:
-                flash("Lähteen tyyppiä ei tueta", "error")
+                flash(content["error_not_supported"][lang], "error")
                 return redirect("/?show_add_form")
 
-        flash(f"Lähde {added_key} lisätty onnistuneesti!", "success")
+        clear_session()
+        flash(content["msg_success"][lang], "success")
         return redirect("/")
 
     except UserInputError as error:
-        flash(str(error), "error")
-        return redirect("/?show_add_form")
+        flash(error.lang(lang), "error")
+        return redirect(error_redirect_path)
 
     except Exception as error:  # pylint: disable=broad-exception-caught
         flash(
-            "Lähteen lisääminen epäonnistui teknisen virheen takia, \
-            ota yhteyttä järjestelmänvalvojaan.",
+            content["error_common"][lang],
             "error",
         )
         print(error)
@@ -156,14 +196,15 @@ def index_post():
 @app.route("/delete/<int:source_id>", methods=["POST"])
 def delete_source(source_id):
     source_repo = SourceRepository(DatabaseService())
+    lang = session.get("lang", "fi")
+
     try:
         source_repo.delete(source_id)
-        flash("Lähde poistettu onnistuneesti!", "success")
+        flash(content["msg_success"][lang], "success")
         return redirect("/")
     except Exception as error:  # pylint: disable=broad-exception-caught
         flash(
-            "Lähteen poistaminen epäonnistui teknisen virheen takia, \
-            ota yhteyttä järjestelmänvalvojaan.",
+            content["error_common"][lang],
             "error",
         )
         print(error)
@@ -173,14 +214,15 @@ def delete_source(source_id):
 @app.route("/delete_tag/<int:source_id>/<string:tag>", methods=["POST"])
 def delete_tag(source_id, tag):
     tag_repo = TagRepository(DatabaseService())
+    lang = session.get("lang", "fi")
+
     try:
         tag_repo.delete(source_id, tag)
-        flash("Tunniste poistettu onnistuneesti!", "success")
+        flash(content["msg_success"][lang], "success")
         return redirect("/")
     except Exception as error:  # pylint: disable=broad-exception-caught
         flash(
-            "Tunnisteen poistaminen epäonnistui teknisen virheen takia, \
-            ota yhteyttä järjestelmänvalvojaan.",
+            content["error_common"][lang],
             "error",
         )
         print(error)
@@ -190,6 +232,8 @@ def delete_tag(source_id, tag):
 @app.route("/tag", methods=["POST"])
 def tag_post():
     tag_repo = TagRepository(DatabaseService())
+    lang = session.get("lang", "fi")
+
     form = request.form
     try:
         tag_repo.create(
@@ -201,10 +245,10 @@ def tag_post():
                 }
             )
         )
-        flash("Tunniste lisätty onnistuneesti!", "success")
+        flash(content["msg_success"][lang], "success")
         return redirect("/")
     except UserInputError as error:
-        flash(str(error), "error")
+        flash(error.lang(lang), "error")
         return redirect("/")
     except Exception as error:  # pylint: disable=broad-exception-caught
         flash(
@@ -251,14 +295,21 @@ def reset_db():
 def get_source_details(source_id):
     source_repo = SourceRepository(DatabaseService())
     try:
-        source = source_repo.get_full()
-        source = next((s for s in source if s.source_id == source_id), None)
+        source = first_item(source_repo.get_full(source_id))
 
         if not source:
             return {"error": "Source not found"}, 404
 
-        return source.to_dict(), 200
+        return source.__dict__, 200
 
     except Exception as error:  # pylint: disable=broad-exception-caught
         print(error)
         return {"error": "Failed to fetch source details"}, 500
+
+
+@app.route("/clear_session", methods=["GET"])
+def clear_session():
+    lang = session.get("lang", "fi")
+    session.clear()
+    session["lang"] = lang
+    return ""

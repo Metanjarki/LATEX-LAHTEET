@@ -3,6 +3,7 @@ from typing import Optional
 from config import SCHEMA_NAME
 from entities.inproceedings import Inproceedings
 from util import try_parse_int
+import repositories.source_repository
 
 
 class InproceedingsRepository:
@@ -79,5 +80,41 @@ class InproceedingsRepository:
                 "organization": inproceedings.organization,
                 "publisher": inproceedings.publisher,
                 "volume": try_parse_int(inproceedings.volume),
+            },
+        )
+
+    def update(self, inproceedings):
+        inproceedings.validate()
+        repositories.source_repository.SourceRepository(self.database_service).update(
+            inproceedings
+        )
+
+        sql = f"""
+            UPDATE {SCHEMA_NAME}.source_inproceedings SET
+            booktitle = :booktitle,
+            editor = :editor,
+            series = :series,
+            pages = :pages,
+            address = :address,
+            month = :month,
+            organization = :organization,
+            publisher = :publisher,
+            volume = :volume
+
+            WHERE source_id = :source_id
+        """
+        self.database_service.execute(
+            sql,
+            {
+                "booktitle": inproceedings.booktitle,
+                "editor": inproceedings.editor,
+                "series": inproceedings.series,
+                "pages": inproceedings.pages,
+                "address": inproceedings.address,
+                "month": inproceedings.month,
+                "organization": inproceedings.organization,
+                "publisher": inproceedings.publisher,
+                "volume": try_parse_int(inproceedings.volume),
+                "source_id": inproceedings.source_id,
             },
         )

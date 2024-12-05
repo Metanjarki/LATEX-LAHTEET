@@ -1,6 +1,6 @@
 import re
 
-from db_util import source_exists_by_key
+from content import combine, content
 from util import UserInputError
 
 
@@ -25,39 +25,20 @@ class Source:
         ]
 
     def validate(self):
-        if len(self.bibtex_key) == 0:
-            raise UserInputError("Avain vaaditaan")
-
-        if not re.compile("^[0-9a-zA-Z\\-_:]+$").match(self.bibtex_key):
-            raise UserInputError(
-                "Avain saa sisältää vain merkkejä 0-9, a-z, A-Z, -, _ ja :"
-            )
+        if not re.compile("^[0-9a-zA-Z\\-_:]*$").match(str(self.bibtex_key)):
+            raise UserInputError(content["error_invalid_bibtex_format"])
 
         if len(self.title) == 0:
-            raise UserInputError("Otsikko vaaditaan")
+            raise UserInputError(combine(content["title"], content["is_required"]))
 
         if len(self.author) == 0:
-            raise UserInputError("Kirjoittaja vaaditaan")
+            raise UserInputError(combine(content["author"], content["is_required"]))
 
         if len(self.year) == 0:
-            raise UserInputError("Julkaisuvuosi vaaditaan")
+            raise UserInputError(combine(content["year"], content["is_required"]))
 
         if not re.compile("^[0-9]+$").match(self.year):
-            raise UserInputError("Julkaisuvuoden on oltava numero")
-
-        # siirretty samanlaisten avainten tarkistuksen viimeiseksi että testit toimii :D
-        if source_exists_by_key(self.bibtex_key):
-            raise UserInputError(f"Avain {self.bibtex_key} on jo käytössä")
-
-    def to_dict(self):
-        return {
-            "source_id": self.source_id,
-            "bibtex_key": self.bibtex_key,
-            "title": self.title,
-            "year": self.year,
-            "author": self.author,
-            "tags": self.tags,
-        }
+            raise UserInputError(combine(content["year"], content["must_be_number"]))
 
     # str(objekti) muuntaa sen bibtex-muotoon
     def __str__(self) -> str:

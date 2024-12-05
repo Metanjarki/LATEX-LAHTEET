@@ -32,7 +32,46 @@ content = {
         "en": "Book",
     },
     "inproceedings": {
-        "fi": "Artikkeli conferenssijulkaisussa",
+        "fi": "Artikkeli konferenssijulkaisussa",
         "en": "Inproceedings",
     },
+    "error_source_not_found": {
+        "fi": "Lähdettä ei ole olemassa",
+        "en": "Source not found",
+    },
+    "error_common": {
+        "fi": "Toiminto epäonnistui teknisen virheen takia",
+        "en": "The action failed due to a technical error",
+    },
+    "error_key_in_use": {
+        "fi": "Avain on jo käytössä",
+        "en": "Key is already in use",
+    },
+    "is_required": {
+        "fi": " vaaditaan",
+        "en": " is required",
+    },
+    "error_not_supported": {
+        "fi": "Toimintoa ei tueta",
+        "en": "This action is not supported",
+    },
+    "msg_success": {
+        "fi": "Toiminto suoritettu onnistuneesti",
+        "en": "Action completed successfully",
+    },
+    "must_be_number": {
+        "fi": " on oltava numero",
+        "en": " must be a number",
+    },
+    "error_invalid_bibtex_format": {
+        "fi": "Avain saa sisältää vain merkkejä 0-9, a-z, A-Z, -, _ ja :",
+        "en": "Key can only contain characters 0-9, a-z, A-Z, -, _ and :",
+    },
 }
+
+
+def combine(a, b):
+    return {
+        "fi": a["fi"] + b["fi"],
+        "en": a["en"] + b["en"],
+    }

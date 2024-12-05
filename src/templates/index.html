@@ -52,7 +52,9 @@ endblock %} {% block body %}
                     </button>
                 </div>
                 <div class="buttons">
-                    <button type="submit" class="edit" id="edit-source-btn">
+                    <button type="submit" class="edit" id="edit-source-btn"
+                        onclick="event.stopPropagation(); window.location.href = '/edit/{{source.source_id}}'"
+                    >
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
                     <form
@@ -98,7 +100,7 @@ endblock %} {% block body %}
 
         <div class="content">
             <label for="add-field-type">Tyyppi</label>
-            <select name="type" id="add-field-type">
+            <select name="kind" id="add-field-type">
                 <option value="book">{{content["book"][lang]}}</option>
                 <option value="article">{{content["article"][lang]}}</option>
                 <option value="inproceedings">{{content["inproceedings"][lang]}}</option>
@@ -107,7 +109,7 @@ endblock %} {% block body %}
             <div id="add-form-fields"></div>
 
             <button type="submit" id="source-form-btn" class="btn primary">
-                {{content["source_info"][lang]}}
+                {{content["add"][lang]}}
             </button>
         </div>
     </div>
@@ -156,6 +158,7 @@ endblock %} {% block body %}
     const formFields = JSON.parse(`{{form_json|safe}}`);
     const content = JSON.parse(`{{content_json|safe}}`);
     const lang = `{{lang}}`;
+    let savedFields = JSON.parse(`{{saved_fields_json|safe}}`);
 </script>
 
 <script>
@@ -164,6 +167,7 @@ endblock %} {% block body %}
     }
 
     async function fetchSourceDetails(sourceId) {
+        const ignoreFields = ["stringify_ignore_fields"];
         const response = await fetch(`/source/${sourceId}`);
         if (!response.ok) throw new Error('Failed to fetch source details');
         const sourceDetails = await response.json();
@@ -172,6 +176,7 @@ endblock %} {% block body %}
         modalContent.innerHTML = '';
 
         for (const [key, value] of Object.entries(sourceDetails)) {
+            if(ignoreFields.includes(key)) continue;
             const detail = document.createElement('div');
 
             let keyText = key;

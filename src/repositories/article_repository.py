@@ -3,6 +3,7 @@ from typing import Optional
 from config import SCHEMA_NAME
 from entities.article import Article
 from util import try_parse_int
+import repositories.source_repository
 
 
 class ArticleRepository:
@@ -70,5 +71,33 @@ class ArticleRepository:
                 "number": try_parse_int(article.number),
                 "pages": article.pages,
                 "month": article.month,
+            },
+        )
+
+    def update(self, article):
+        article.validate()
+        repositories.source_repository.SourceRepository(self.database_service).update(
+            article
+        )
+
+        sql = f"""
+            UPDATE {SCHEMA_NAME}.source_article SET
+            journal = :journal,
+            volume = :volume,
+            number = :number,
+            pages = :pages,
+            month = :month
+
+            WHERE source_id = :source_id
+        """
+        self.database_service.execute(
+            sql,
+            {
+                "journal": article.journal,
+                "volume": article.volume,
+                "number": article.number,
+                "pages": article.pages,
+                "month": article.month,
+                "source_id": article.source_id,
             },
         )

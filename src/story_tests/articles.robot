@@ -56,7 +56,7 @@ Cannot add article where year is not a number
     Input Month  December
     Publish Source
 
-    Page Should Contain Message  Julkaisuvuoden on oltava numero
+    Page Should Contain Message  Julkaisuvuosi on oltava numero
 
 *** Keywords ***
 Input Journal

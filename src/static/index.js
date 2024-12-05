@@ -30,6 +30,14 @@ const closeAddSourceForm = () => {
     addSourceForm.classList.remove('show');
     // Hankkiutuu eroon GET-parametreista
     window.history.replaceState(null, '', window.location.pathname);
+    clearSavedData();
+    updateFormFields();
+};
+
+const clearSavedData = () => {
+    savedFields = {};
+    updateFormFields();
+    fetch('/clear_session');
 };
 
 addSourceFormCloseButton.onclick = closeAddSourceForm;
@@ -48,23 +56,34 @@ messages.forEach((message) => {
 
 // Generoidaan lomakekentät backendistä saadun JSON-datan perusteella
 const updateFormFields = () => {
+    const params = new URLSearchParams(document.location.search);
+    const editId = params.get('edit_id');
+
     const type = addFieldType.value ?? 'book';
 
-    allFieldsHtml = '';
+    let allFieldsHtml = '';
+
+    if (editId)
+        allFieldsHtml += `<input type="hidden" name="edit_id" value="${editId}">`;
 
     for (const field of [
         ...formFields['common'],
         ...(formFields[type] ?? []),
     ]) {
+        if (editId && field.name === 'bibtex_key') continue;
+        const className = editId && field.name === 'bibtex_key' ? 'hide' : '';
+
         let friendlyName = field.name;
         const entry = content[field.name];
         if (entry) {
             friendlyName = entry[lang] ?? field.name;
         }
 
+        const value = field.name in savedFields ? savedFields[field.name] : '';
+
         fieldHtml = `
-<label for="add-field-${field.name}" class="${field.required ? 'required' : ''}">${friendlyName}</label>
-<input type="${field.input_type}" name="${field.name}" placeholder="${friendlyName}" id="add-field-${field.name}" />
+<label for="add-field-${field.name}" class="${field.required ? 'required' : ''}" class="${className}">${friendlyName}</label>
+<input type="${field.input_type}" name="${field.name}" placeholder="${friendlyName}" id="add-field-${field.name}" value="${value ?? ''}" class="${className}" />
 `;
         allFieldsHtml += fieldHtml;
     }
@@ -85,5 +104,6 @@ const closeAddTagForm = () => {
 
 addTagFormCloseButton.onclick = closeAddTagForm;
 
-updateFormFields();
 addFieldType.onchange = updateFormFields;
+if ('kind' in savedFields) addFieldType.value = savedFields['kind'];
+updateFormFields();

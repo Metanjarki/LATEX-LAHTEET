@@ -18,7 +18,10 @@ disable=raw-checker-failed,
         too-few-public-methods,
         too-many-instance-attributes,
         duplicate-code,
-        fixme
+        fixme,
+        cyclic-import,
+        too-many-return-statements,
+        trailing-newlines
 
 [FORMAT]
 

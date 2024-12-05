@@ -224,3 +224,7 @@ nav a:hover {
 #language-toggle img {
     height: 0.8em;
 }
+
+.hide {
+    display: none;
+}

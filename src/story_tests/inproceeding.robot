@@ -64,7 +64,7 @@ Cannot add inproceeding where year is not a number
     Input Volume  1
     Publish Source
 
-    Page Should Contain Message  Julkaisuvuoden on oltava numero
+    Page Should Contain Message  Julkaisuvuosi on oltava numero
 
 *** Keywords ***
 Input Book Title

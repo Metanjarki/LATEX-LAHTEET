@@ -2,6 +2,7 @@ from string import digits
 
 from entities.source import Source
 from util import UserInputError
+from content import content, combine
 
 
 class Article(Source):
@@ -15,34 +16,15 @@ class Article(Source):
         self.month = data["month"]
         self.kind = "article"
 
-    def to_dict(self):
-        base = super().to_dict()
-        base.update(
-            {
-                "source_id": self.source_id,
-                "bibtex_key": self.bibtex_key,
-                "title": self.title,
-                "year": self.year,
-                "author": self.author,
-                "journal": self.journal,
-                "volume": self.volume,
-                "number": self.number,
-                "pages": self.pages,
-                "month": self.month,
-                "tags": self.tags,
-            }
-        )
-        return base
-
     def validate(self):
-        
+        super().validate()
 
         if len(self.journal) == 0:
-            raise UserInputError("Julkaisu vaaditaan")
+            raise UserInputError(combine(content["journal"], content["is_required"]))
 
         if len(self.volume) > 0 and not set(self.volume).issubset(set(digits)):
-            raise UserInputError("Kentän nide on oltava numero")
+            raise UserInputError(combine(content["volume"], content["must_be_number"]))
 
         if len(self.number) > 0 and not set(self.number).issubset(set(digits)):
-            raise UserInputError("Kentän numero on oltava numero")
-        super().validate()
+            raise UserInputError(combine(content["number"], content["must_be_number"]))
+

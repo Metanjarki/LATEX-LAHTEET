@@ -1,5 +1,6 @@
 from entities.source import Source
 from util import UserInputError
+from content import content, combine
 
 
 class Book(Source):
@@ -9,20 +10,7 @@ class Book(Source):
         self.publisher = data["publisher"]
         self.kind = "book"
 
-    def to_dict(self):
-        base = super().to_dict()
-        base.update({
-                "source_id": self.source_id,
-                "bibtex_key": self.bibtex_key,
-                "title": self.title,
-                "year": self.year,
-                "author": self.author,
-                "publisher": self.publisher,
-                "tags": self.tags,
-        })
-        return base
-
     def validate(self):
-        if len(self.publisher) == 0:
-            raise UserInputError("Julkaisija vaaditaan")
         super().validate()
+        if len(self.publisher) == 0:
+            raise UserInputError(combine(content["publisher"], content["is_required"]))
