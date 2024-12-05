@@ -110,7 +110,7 @@
     border: none;
     background: none;
     color: var(--color-red);
-    padding: 0.6em 0.8em;
+    padding: 0.6em;
     background-color: white;
     border-radius: var(--border-radius);
     transition:
@@ -121,6 +121,10 @@
 
 .source button.edit {
     color: var(--color-blue);
+}
+
+.source button:last-child {
+    margin-right: 0.2em;
 }
 
 .source button.delete:hover {
