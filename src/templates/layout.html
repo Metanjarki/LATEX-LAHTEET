@@ -17,6 +17,18 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
+        <nav>
+            <li>
+                <a href="/download"><i class="fa-solid fa-download"></i></a>
+            </li>
+            <li>
+                <a href="/language" id="language-toggle"
+                    ><img
+                        src="{{ url_for('static',filename='/flag/') }}{{lang}}.svg"
+                        alt="Language icon"
+                /></a>
+            </li>
+        </nav>
         {% block body %}{% endblock %}
     </body>
 </html>

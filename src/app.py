@@ -1,8 +1,9 @@
 from io import BytesIO
 
-from flask import flash, redirect, render_template, request, send_file
+from flask import flash, json, redirect, render_template, request, send_file, session
 
 from bibtex_convert import to_bibtex
+from content import content
 from database_service import DatabaseService
 from db_util import truncate_db
 from entities.article import Article
@@ -32,6 +33,9 @@ def index_get():
             sources=sources,
             form_json=form_json,
             show_add_form=show_add_form,
+            lang=session.get("lang", "fi"),
+            content=content,
+            content_json=json.dumps(content),
         )
     except Exception as error:  # pylint: disable=broad-exception-caught
         flash(
@@ -228,10 +232,20 @@ def download():
     )
 
 
+@app.route("/language", methods=["GET"])
+def language():
+    lang = session.get("lang", "fi")
+    lang = "en" if lang == "fi" else "fi"
+    session["lang"] = lang
+
+    return redirect("/")
+
+
 @app.route("/reset_db", methods=["GET"])
 def reset_db():
     truncate_db()
     return redirect("/")
+
 
 @app.route("/source/<int:source_id>", methods=["GET"])
 def get_source_details(source_id):

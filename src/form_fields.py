@@ -1,10 +1,9 @@
 import json
 
 
-class FormField: # pylint: disable=too-few-public-methods
-    def __init__(self, name, name_friendly, required=False, input_type="text"):
+class FormField:  # pylint: disable=too-few-public-methods
+    def __init__(self, name, required=False, input_type="text"):
         self.name = name
-        self.name_friendly = name_friendly
         self.required = required
         self.input_type = input_type
 
@@ -13,33 +12,33 @@ class FormField: # pylint: disable=too-few-public-methods
 # "common" -listan kentät ovat kaikissa viitetyypeissä
 fields = {
     "common": [
-        FormField("bibtex_key", "Avain", True),
-        FormField("title", "Otsikko", True),
-        FormField("year", "Julkaisuvuosi", True),
+        FormField("bibtex_key", True),
+        FormField("title", True),
+        FormField("year", True),
     ],
     "book": [
-        FormField("author", "Kirjoittaja", True),
-        FormField("publisher", "Julkaisija", True),
+        FormField("author", True),
+        FormField("publisher", True),
     ],
     "article": [
-        FormField("author", "Kirjoittaja", True),
-        FormField("journal", "Julkaisu", True),
-        FormField("volume", "Nide", False, "number"),
-        FormField("number", "Numero", False, "number"),
-        FormField("pages", "Sivut"),
-        FormField("month", "Kuukausi"),
+        FormField("author", True),
+        FormField("journal", True),
+        FormField("volume", False, "number"),
+        FormField("number", False, "number"),
+        FormField("pages"),
+        FormField("month"),
     ],
     "inproceedings": [
-        FormField("author", "Kirjoittaja", True),
-        FormField("booktitle", "Kirjan otsikko", True),
-        FormField("editor", "Editori"),
-        FormField("series", "Sarja"),
-        FormField("pages", "Sivut"),
-        FormField("address", "Osoite"),
-        FormField("month", "Kuukausi"),
-        FormField("organization", "Organisaatio"),
-        FormField("publisher", "Julkaisija"),
-        FormField("volume", "Nide", False, "number"),
+        FormField("author", True),
+        FormField("booktitle", True),
+        FormField("editor"),
+        FormField("series"),
+        FormField("pages"),
+        FormField("address"),
+        FormField("month"),
+        FormField("organization"),
+        FormField("publisher"),
+        FormField("volume", False, "number"),
     ],
 }
 

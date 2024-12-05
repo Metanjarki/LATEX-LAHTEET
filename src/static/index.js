@@ -34,12 +34,6 @@ const closeAddSourceForm = () => {
 
 addSourceFormCloseButton.onclick = closeAddSourceForm;
 
-const downloadButton = document.querySelector('#download-btn');
-
-downloadButton.onclick = () => {
-    location.href = '/download';
-};
-
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeAddSourceForm();
@@ -61,9 +55,15 @@ const updateFormFields = () => {
         ...formFields['common'],
         ...(formFields[type] ?? []),
     ]) {
+        let friendlyName = field.name;
+        const entry = content[field.name];
+        if (entry) {
+            friendlyName = entry[lang] ?? field.name;
+        }
+
         fieldHtml = `
-<label for="add-field-${field.name}" class="${field.required ? 'required' : ''}">${field.name_friendly}</label>
-<input type="${field.input_type}" name="${field.name}" placeholder="${field.name_friendly}" id="add-field-${field.name}" />
+<label for="add-field-${field.name}" class="${field.required ? 'required' : ''}">${friendlyName}</label>
+<input type="${field.input_type}" name="${field.name}" placeholder="${friendlyName}" id="add-field-${field.name}" />
 `;
         allFieldsHtml += fieldHtml;
     }

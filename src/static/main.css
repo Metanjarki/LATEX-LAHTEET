@@ -3,6 +3,8 @@
 
 :root {
     --color-blue: #4b7bec;
+    --color-turquoise: #0fb9b1;
+    --color-turquoise-dark: #009e97;
     --color-green: #20bf6b;
     --color-green-dark: #16ab5c;
     --color-red: #eb3b5a;
@@ -10,10 +12,15 @@
     --color-blue-dark: #3867d6;
     --color-lightgray: #d1d8e0;
     --color-lightergray: #e1e7ed;
+    --color-lightergray-dark: #b6c2cf;
     --color-darkgray: #4b6584;
     --transition-duration: 0.1s;
     --border-radius: 0.25rem;
     font-weight: 500;
+}
+
+body {
+    margin: 0;
 }
 
 * {
@@ -171,4 +178,49 @@ button:focus {
 
 .text-disabled {
     opacity: 0.7;
+}
+
+nav {
+    background-color: var(--color-lightergray);
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 3em;
+}
+
+nav li {
+    list-style-type: none;
+    position: relative;
+    width: 3em;
+}
+
+nav a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    padding: 0.8em;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-duration) ease-out;
+    text-transform: uppercase;
+}
+
+nav a:hover {
+    background-color: var(--color-lightergray-dark);
+}
+
+#language-toggle {
+    display: flex;
+    align-items: center;
+}
+
+#language-toggle img {
+    height: 0.8em;
 }

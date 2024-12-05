@@ -1,5 +1,9 @@
 /* NOTE: Kyseessä on index.html -templateen liittyvät tyylittelyt, ei pääasiallinen tyylitiedosto (main.css) */
 
+#books {
+    margin: 1em;
+}
+
 .modal-form {
     display: none;
     position: fixed;
@@ -205,14 +209,14 @@
 .source .tags {
     display: flex;
     gap: 0.5em;
-    padding-top: 1em;
+    padding-top: 1.4em;
     padding-bottom: 0.4em;
 }
 
 .source .tags .tag,
 .source .tags button.add-tag {
     --h-pad: 0.8em;
-    --bg-color: var(--color-green);
+    --bg-color: var(--color-turquoise);
     background-color: var(--bg-color);
     color: white;
     padding: 0.2em var(--h-pad) 0.1em var(--h-pad);
@@ -224,13 +228,13 @@
 
 .source .tags button.add-tag {
     cursor: pointer;
-    background-color: var(--color-green);
+    background-color: var(--color-turquoise);
     transition: background-color var(--transition-duration) ease-out;
     padding-top: 0.3em;
 }
 
 .source .tags button.add-tag:hover {
-    background-color: var(--color-green-dark);
+    background-color: var(--color-turquoise-dark);
 }
 
 .source .tag button.delete {

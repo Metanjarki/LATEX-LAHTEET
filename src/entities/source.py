@@ -48,7 +48,7 @@ class Source:
         # siirretty samanlaisten avainten tarkistuksen viimeiseksi että testit toimii :D
         if source_exists_by_key(self.bibtex_key):
             raise UserInputError(f"Avain {self.bibtex_key} on jo käytössä")
-        
+
     def to_dict(self):
         return {
             "source_id": self.source_id,
@@ -57,7 +57,7 @@ class Source:
             "year": self.year,
             "author": self.author,
             "tags": self.tags,
-            }
+        }
 
     # str(objekti) muuntaa sen bibtex-muotoon
     def __str__(self) -> str:
