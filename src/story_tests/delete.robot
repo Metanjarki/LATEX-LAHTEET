@@ -42,6 +42,22 @@ Add an article source, click delete and confirm
     Sleep    0.1s
     Page Should Contain  Ei lähteitä
 
+Add an inproceedings source, click delete and confirm
+    Go To  ${HOME_URL}
+    Click Add Source
+    Select From List By Value  id=add-field-type  inproceedings
+    Input Key  inproceedings1
+    Input Title  Konferenssijulkaisu
+    Input Year  2015
+    Input Author  Kirjoittajan Nimi
+    Input Booktitle  Tekstin otsikko
+    Publish Source
+
+    Wait Until Element Is Visible  messages
+    Click Delete And Confirm
+    Sleep    0.1s
+    Page Should Contain  Ei lähteitä
+
 Add a book source, click delete and then cancel
     Go To  ${HOME_URL}
     Click Add Source
@@ -135,3 +151,7 @@ Input Publisher
 Input Journal
     [Arguments]  ${journal}
     Input Text  journal  ${journal}
+
+Input Booktitle
+    [Arguments]  ${booktitle}
+    Input Text  booktitle  ${booktitle}
