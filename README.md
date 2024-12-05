@@ -20,14 +20,32 @@ TEST_ENV=true
 SECRET_KEY=jokin satunnainen merkkijono
 ```
 
-Varmista että Postgres-tietokantasi on toiminnassa. Alusta sovelluksen skeema ajamalla komennon `python3 src/db_helper.py`. 
+Varmista että Postgres -tietokantasi on toiminnassa. 
 
-Tämän jälkeen aktivoi python-virtuaaliympäristö komennolla `poetry shell`. Tämän jälkeen projektin ajaminen onnistuu komennolla `python3 src/index.py`.
+Alusta sovelluksen skeema:
+```bash 
+$ python3 src/db_helper.py
+```
+
+Aktivoi Python -virtuaaliympäristö:
+```bash
+$ poetry shell
+```
+
+Aja projekti:
+```bash
+$ python3 src/index.py
+```
 
 ## Hyödyllistä tietää
 
 Mikäli tarkastelet tietokantaa `psql` -ohjelmalla, projektin käyttämään skeemaan pääsee käsiksi ajamalla ensin kyselyn `SET search_path TO lahteet;`.
 
+Voit tuoda sovellukseen esim. demoamista varten esimerkkidataa tiedostosta `sample_data.sql`. Se onnistuu psql-ohjelman avulla seuraavasti:
+
+```bash
+$ psql < sample_data.sql
+```
 ## Resursseja
 
 - [Tietoa bibtex-lähdetyypeistä ja mitä kenttiä ne pitää sisällään](https://www.openoffice.org/bibliographic/bibtex-defs.html)
