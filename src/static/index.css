@@ -5,41 +5,34 @@
 }
 
 .modal-form {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 600px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    overflow-y: auto;
-    max-height: 80vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    transition: opacity var(--transition-duration) ease-out;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-form.show {
-    display: block;
-}
-
-.modal-form .content {
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.5;
-    overflow-wrap: break-word;
-}
-
-.modal-form .content div {
-    margin-bottom: 10px;
+    opacity: 1;
+    pointer-events: initial;
 }
 
 .modal-form .inner {
+    background-color: white;
+    border-radius: var(--border-radius);
+    margin: 0 1em;
+    max-height: calc(100% - 1em);
+    max-width: calc(100% - 1em);
     display: flex;
     flex-direction: column;
-    gap: 15px;
 }
 
 .modal-form .inner .top-row {
@@ -77,17 +70,7 @@
 .modal-form .top-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-}
-
-.modal-form .top-row .close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: #666;
-    cursor: pointer;
+    align-items: baseline;
 }
 
 .modal-form button[type='submit'] {
@@ -122,39 +105,30 @@
     opacity: 1;
 }
 
+.source button.edit,
 .source button.delete {
     border: none;
     background: none;
     color: var(--color-red);
-    padding: 0.6em;
-    margin-right: 0.2em;
+    padding: 0.6em 0.8em;
     background-color: white;
     border-radius: var(--border-radius);
     transition:
         color var(--transition-duration) ease-out,
         opacity var(--transition-duration) ease-out;
     opacity: 0;
+}
+
+.source button.edit {
+    color: var(--color-blue);
 }
 
 .source button.delete:hover {
     color: var(--color-red-dark);
 }
 
-.source button.edit {
-    border: none;
-    background: none;
-    color: var(--color-blue);
-    padding: 0.6em;
-    background-color: white;
-    border-radius: var(--border-radius);
-    transition:
-        color var(--transition-duration) ease-out,
-        opacity var(--transition-duration) ease-out;
-    opacity: 0;
-}
-
 .source button.edit:hover {
-    color: var(--color-red-dark);
+    color: var(--color-blue-dark);
 }
 
 .source .buttons {
@@ -210,7 +184,7 @@
 .source .tags {
     display: flex;
     gap: 0.5em;
-    padding-top: 1.4em;
+    padding-top: 1em;
     padding-bottom: 0.4em;
 }
 
