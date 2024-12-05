@@ -37,6 +37,7 @@ addSourceFormCloseButton.onclick = closeAddSourceForm;
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeAddSourceForm();
+        closeSourceDetails();
         closeAddTagForm();
     }
 });
