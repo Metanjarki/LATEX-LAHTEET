@@ -94,8 +94,8 @@ class ArticleRepository:
             sql,
             {
                 "journal": article.journal,
-                "volume": article.volume,
-                "number": article.number,
+                "volume": try_parse_int(article.volume),
+                "number": try_parse_int(article.number),
                 "pages": article.pages,
                 "month": article.month,
                 "source_id": article.source_id,

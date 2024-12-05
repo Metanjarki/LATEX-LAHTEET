@@ -78,7 +78,7 @@ def index_post():
 
     editing = "edit_id" in form
 
-    error_redirect_path = f"/?show_add_form{f"&edit_id={source_id}" if editing else ""}"
+    error_redirect_path = "/?show_add_form" + f"&edit_id={source_id}" if editing else ""
 
     if not editing and len(bibtex_key) == 0:
         flash(f"{content["bibtex_key"][lang]} {content["is_required"][lang]}", "error")
