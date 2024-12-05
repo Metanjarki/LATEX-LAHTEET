@@ -126,7 +126,8 @@
     border: none;
     background: none;
     color: var(--color-red);
-    padding: 0.6em 0.8em;
+    padding: 0.6em;
+    margin-right: 0.2em;
     background-color: white;
     border-radius: var(--border-radius);
     transition:
@@ -142,8 +143,8 @@
 .source button.edit {
     border: none;
     background: none;
-    color: var(--color-red);
-    padding: 0.6em 0.8em;
+    color: var(--color-blue);
+    padding: 0.6em;
     background-color: white;
     border-radius: var(--border-radius);
     transition:
