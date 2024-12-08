@@ -1,6 +1,6 @@
 from entities.source import Source
 from util import UserInputError
-from content import content, combine
+from content import content, combine_language_items
 
 
 class Book(Source):
@@ -13,4 +13,6 @@ class Book(Source):
     def validate(self):
         super().validate()
         if len(self.publisher) == 0:
-            raise UserInputError(combine(content["publisher"], content["is_required"]))
+            raise UserInputError(
+                combine_language_items(content["publisher"], content["is_required"])
+            )

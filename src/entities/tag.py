@@ -1,6 +1,6 @@
 from db_util import source_exists_by_id
 from util import UserInputError
-from content import content, combine
+from content import content, combine_language_items
 
 
 class Tag:
@@ -11,7 +11,9 @@ class Tag:
 
     def validate(self):
         if len(self.name) == 0:
-            raise UserInputError(combine(content["name"], content["is_required"]))
+            raise UserInputError(
+                combine_language_items(content["name"], content["is_required"])
+            )
 
         if not source_exists_by_id(self.source_id):
             raise UserInputError(content["error_source_not_found"])

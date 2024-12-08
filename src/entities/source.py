@@ -1,6 +1,6 @@
 import re
 
-from content import combine, content
+from content import combine_language_items, content
 from util import UserInputError
 
 
@@ -29,16 +29,24 @@ class Source:
             raise UserInputError(content["error_invalid_bibtex_format"])
 
         if len(self.title) == 0:
-            raise UserInputError(combine(content["title"], content["is_required"]))
+            raise UserInputError(
+                combine_language_items(content["title"], content["is_required"])
+            )
 
         if len(self.author) == 0:
-            raise UserInputError(combine(content["author"], content["is_required"]))
+            raise UserInputError(
+                combine_language_items(content["author"], content["is_required"])
+            )
 
         if len(self.year) == 0:
-            raise UserInputError(combine(content["year"], content["is_required"]))
+            raise UserInputError(
+                combine_language_items(content["year"], content["is_required"])
+            )
 
         if not re.compile("^[0-9]+$").match(self.year):
-            raise UserInputError(combine(content["year"], content["must_be_number"]))
+            raise UserInputError(
+                combine_language_items(content["year"], content["must_be_number"])
+            )
 
     # str(objekti) muuntaa sen bibtex-muotoon
     def __str__(self) -> str:

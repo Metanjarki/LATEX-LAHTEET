@@ -3,8 +3,8 @@ from io import BytesIO
 from flask import flash, json, redirect, render_template, request, send_file, session
 
 from bibtex_convert import to_bibtex
-from content import content
 from database_service import DatabaseService
+from content import content
 from db_util import truncate_db, source_exists_by_key, source_exists_by_id
 from entities.article import Article
 from entities.book import Book
@@ -45,7 +45,11 @@ def index_get():
             "error",
         )
         print(error)
-        return render_template("index.html")
+        return render_template(
+            "index.html",
+            content=content,
+            content_json=json.dumps(content),
+        )
 
 
 @app.route("/edit/<int:source_id>", methods=["GET"])

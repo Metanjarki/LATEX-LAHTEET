@@ -70,8 +70,8 @@ content = {
 }
 
 
-def combine(a, b):
+def combine_language_items(item_a, item_b):
     return {
-        "fi": a["fi"] + b["fi"],
-        "en": a["en"] + b["en"],
+        "fi": item_a["fi"] + item_b["fi"],
+        "en": item_a["en"] + item_b["en"],
     }

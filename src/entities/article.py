@@ -2,7 +2,7 @@ from string import digits
 
 from entities.source import Source
 from util import UserInputError
-from content import content, combine
+from content import content, combine_language_items
 
 
 class Article(Source):
@@ -20,11 +20,16 @@ class Article(Source):
         super().validate()
 
         if len(self.journal) == 0:
-            raise UserInputError(combine(content["journal"], content["is_required"]))
+            raise UserInputError(
+                combine_language_items(content["journal"], content["is_required"])
+            )
 
         if len(self.volume) > 0 and not set(self.volume).issubset(set(digits)):
-            raise UserInputError(combine(content["volume"], content["must_be_number"]))
+            raise UserInputError(
+                combine_language_items(content["volume"], content["must_be_number"])
+            )
 
         if len(self.number) > 0 and not set(self.number).issubset(set(digits)):
-            raise UserInputError(combine(content["number"], content["must_be_number"]))
-
+            raise UserInputError(
+                combine_language_items(content["number"], content["must_be_number"])
+            )
