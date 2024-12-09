@@ -22,9 +22,9 @@ SECRET_KEY=jokin satunnainen merkkijono
 
 Varmista että Postgres -tietokantasi on toiminnassa. 
 
-Alusta sovelluksen skeema:
+(Työkansio projektin juuressa) alusta sovelluksen skeema:
 ```bash 
-$ python3 src/db_helper.py
+$ psql < schema.sql
 ```
 
 Aktivoi Python -virtuaaliympäristö:
@@ -41,7 +41,7 @@ $ python3 src/index.py
 
 Mikäli tarkastelet tietokantaa `psql` -ohjelmalla, projektin käyttämään skeemaan pääsee käsiksi ajamalla ensin kyselyn `SET search_path TO lahteet;`.
 
-Voit tuoda sovellukseen esim. demoamista varten esimerkkidataa tiedostosta `sample_data.sql`. Se onnistuu psql-ohjelman avulla seuraavasti:
+Voit tuoda sovellukseen demoamista varten esimerkkidataa tiedostosta `sample_data.sql`. Se onnistuu psql-ohjelman avulla seuraavasti:
 
 ```bash
 $ psql < sample_data.sql
