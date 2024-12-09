@@ -7,17 +7,17 @@ class TestSource(unittest.TestCase):
     def setUp(self):
         self.data = {
         "source_article_id" : "1",
-        "source_id"     : "1",
-        "bibtex_key"    : "key",   
-        "title"         : "title",
-        "year"          : "2024",
-        "author"        : "author",
-        "journal"       : "booktitle",
-        "pages"         : "pages",
-        "month"         : "month",
-        "number"        : "organization",
-        "volume"        : "volume",
-        "tags"          : "tags",
+        "source_id"         : "1",
+        "bibtex_key"        : "key",   
+        "title"             : "title",
+        "year"              : "2024",
+        "author"            : "author",
+        "journal"           : "booktitle",
+        "pages"             : "pages",
+        "month"             : "month",
+        "number"            : "organization",
+        "volume"            : "volume",
+        "tags"              : "tags",
         }
 
         self.source = Article(self.data)
