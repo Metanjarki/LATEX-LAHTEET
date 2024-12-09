@@ -24,3 +24,8 @@ def first_item(lst: list[T]) -> Optional[T]:
         return None
 
     return lst[0]
+
+
+def to_bibtex(items: list[T]) -> str:
+    bibtex_strings = [str(x) for x in items]
+    return "\n\n".join(bibtex_strings)

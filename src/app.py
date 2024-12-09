@@ -2,7 +2,6 @@ from io import BytesIO
 
 from flask import flash, json, redirect, render_template, request, send_file, session
 
-from bibtex_convert import to_bibtex
 from database_service import DatabaseService
 from content import content
 from db_util import truncate_db, source_exists_by_key, source_exists_by_id
@@ -17,7 +16,7 @@ from repositories.book_repository import BookRepository
 from repositories.inproceedings_repository import InproceedingsRepository
 from repositories.source_repository import SourceRepository
 from repositories.tag_repository import TagRepository
-from util import UserInputError, first_item
+from util import UserInputError, first_item, to_bibtex
 
 
 @app.route("/", methods=["GET"])

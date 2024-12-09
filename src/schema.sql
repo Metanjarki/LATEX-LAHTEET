@@ -1,3 +1,7 @@
+DROP SCHEMA IF EXISTS lahteet CASCADE;
+CREATE SCHEMA lahteet;
+
+
 CREATE TYPE lahteet.SOURCE_KIND AS ENUM ('book', 'article', 'inproceedings');
 
 CREATE TABLE lahteet.source (

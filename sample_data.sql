@@ -23,7 +23,7 @@ COPY lahteet.source_article (source_article_id, source_id, journal, volume, numb
 
 COPY lahteet.source_book (source_book_id, source_id, publisher, editor, volume, number, series, address, edition, month, note) FROM stdin;
 111	173	Bell Laboratories	\N	\N	\N	\N	\N	\N	\N	\N
-112	174	\t CreateSpace Independent Publishing Platform	\N	\N	\N	\N	\N	\N	\N	\N
+112	174	CreateSpace Independent Publishing Platform	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
