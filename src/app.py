@@ -81,7 +81,9 @@ def index_post():
 
     editing = "edit_id" in form
 
-    error_redirect_path = "/?show_add_form" + f"&edit_id={source_id}" if editing else ""
+    error_redirect_path = "/?show_add_form" + (
+        f"&edit_id={source_id}" if editing else ""
+    )
 
     if not editing and len(bibtex_key) == 0:
         flash(
@@ -145,7 +147,6 @@ def index_post():
                     article_repo.create(article)
 
             case "inproceedings":
-                print("Creating Inproceedings-object")
                 inproceedings = Inproceedings(
                     {
                         "source_id": source_id,
@@ -171,7 +172,6 @@ def index_post():
                         "volume": form["volume"] if "volume" in form else "",
                     }
                 )
-                print("Adding inproceeding object")
 
                 if editing:
                     inproceedings_repo.update(inproceedings)
