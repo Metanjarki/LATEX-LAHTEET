@@ -17,6 +17,8 @@ content = {
     "source_info": {"fi": "Lähteen tiedot", "en": "Source details"},
     "add_source": {"fi": "Lisää lähde", "en": "Add source"},
     "add_tag": {"fi": "Lisää tunniste", "en": "Add tag"},
+    "filter": {"fi": "Suodata", "en": "Filter"},
+    "tag": {"fi": "Tunniste", "en": "Tag"},
     "add": {"fi": "Lisää", "en": "Add"},
     "name": {"fi": "Nimi", "en": "Name"},
     "page_title": {

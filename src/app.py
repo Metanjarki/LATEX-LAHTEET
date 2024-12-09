@@ -25,9 +25,13 @@ def index_get():
     form_json = get_fields_json()
     source_repo = SourceRepository(DatabaseService())
     lang = session.get("lang", "fi")
+    tag_filter = request.args.get("filtered-tag", default="", type=str)
 
     try:
-        sources = source_repo.get()
+        if tag_filter:
+            sources = source_repo.get_by_tag(tag_filter)
+        else:
+            sources = source_repo.get()
         return render_template(
             "index.html",
             sources=sources,

@@ -216,6 +216,12 @@ nav a:hover {
     background-color: var(--color-lightergray-dark);
 }
 
+#filter-by-tag-form{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 #language-toggle {
     display: flex;
     align-items: center;

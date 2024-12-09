@@ -37,6 +37,30 @@ class SourceRepository:
 
         return [Source(row) for row in rows]
 
+    def get_by_tag(self, tag):
+        sql = f"""
+            SELECT
+                s.source_id,
+                s.bibtex_key,
+                s.title,
+                s.year,
+                s.author,
+                STRING_AGG(t.name, ',') AS tags
+
+            FROM {SCHEMA_NAME}.source s
+
+            LEFT JOIN {SCHEMA_NAME}.tag t
+            ON t.source_id = s.source_id
+
+            WHERE t.name = '{tag}'
+
+            GROUP BY s.source_id
+            ORDER BY s.source_id
+        """
+        rows = self.database_service.fetch(sql)
+
+        return [Source(row) for row in rows]
+
     def delete(self, source_id):
         sql = f"""
             DELETE FROM
