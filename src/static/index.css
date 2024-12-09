@@ -95,10 +95,11 @@
     border: 1px solid #dddddd;
     border-radius: var(--border-radius);
     padding: 0.6em 1em;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(45, 75, 209, 0.1);
     box-sizing: border-box;
     cursor: pointer;
     position: relative;
+    max-width: 50%;
 }
 
 .source:hover button[type='submit'] {
@@ -179,7 +180,7 @@
 }
 
 .source:hover {
-    border-color: #888;
+    border-color: var(--color-turquoise);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
     transition: all var(--transition-duration) ease-out;
