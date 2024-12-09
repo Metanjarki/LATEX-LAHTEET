@@ -3,7 +3,7 @@ from io import BytesIO
 from flask import flash, json, redirect, render_template, request, send_file, session
 
 from database_service import DatabaseService
-from content import content
+from content import combine_language_items, content
 from db_util import truncate_db, source_exists_by_key, source_exists_by_id
 from entities.article import Article
 from entities.book import Book
@@ -84,7 +84,10 @@ def index_post():
     error_redirect_path = "/?show_add_form" + f"&edit_id={source_id}" if editing else ""
 
     if not editing and len(bibtex_key) == 0:
-        flash(f"{content["bibtex_key"][lang]} {content["is_required"][lang]}", "error")
+        flash(
+            combine_language_items(content["bibtex_key"], content["is_required"])[lang],
+            "error",
+        )
         return redirect(error_redirect_path)
 
     if not editing and source_exists_by_key(bibtex_key):
