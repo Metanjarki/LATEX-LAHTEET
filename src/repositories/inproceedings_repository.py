@@ -39,14 +39,10 @@ class InproceedingsRepository:
         """
         rows = self.database_service.fetch(sql)
 
-        # NOTE: Varmista että SELECT queryn palattamat kentät ovat samat kuin olion konstruktorin,
-        #  muutoin laita kentät manuaalisesti tyyliin SourceBook(book[0], book[1], jne...)
         return [Inproceedings(row) for row in rows]
 
     def create(self, inproceedings):
-        print("Creating Inproceeding")
         inproceedings.validate()
-        print("Validated Inproceeding")
 
         # Tapa lisätä useihin tauluihin siten, että pääsemme kätevästi
         #  käsiksi edellisen lisäyksen ID:hen

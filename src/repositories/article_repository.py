@@ -35,8 +35,6 @@ class ArticleRepository:
         """
         rows = self.database_service.fetch(sql)
 
-        # NOTE: Varmista että SELECT queryn palattamat kentät ovat samat kuin olion konstruktorin,
-        #  muutoin laita kentät manuaalisesti tyyliin SourceBook(book[0], book[1], jne...)
         return [Article(row) for row in rows]
 
     def create(self, article):

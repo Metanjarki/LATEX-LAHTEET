@@ -150,7 +150,7 @@ def index_post():
                         "title": form["title"] if "title" in form else "",
                         "year": form["year"] if "year" in form else "",
                         "author": form["author"] if "author" in form else "",
-                        "source_inproceeding_id": (
+                        "source_inproceedings_id": (
                             form["source_inproceedings_id"]
                             if "source_inproceedings_id" in form
                             else ""

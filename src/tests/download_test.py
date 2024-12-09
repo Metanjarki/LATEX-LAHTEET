@@ -1,5 +1,5 @@
 import unittest
-from bibtex_convert import to_bibtex
+from util import to_bibtex
 from entities.inproceedings import Inproceedings
 from entities.article import Article
 from entities.book import Book
@@ -41,7 +41,7 @@ class TestDownload(unittest.TestCase):
                     "title": "otsikko",
                     "year": "1234",
                     "author": "tatu",
-                    "source_inproceeding_id": "",
+                    "source_inproceedings_id": 0,
                     "booktitle": "tatun kirja",
                     "editor": "tatu",
                     "series": "sarja",
