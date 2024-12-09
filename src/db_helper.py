@@ -2,7 +2,7 @@ from pathlib import Path
 
 from sqlalchemy import text
 
-from config import db, app, SCHEMA_NAME
+from config import db, app
 
 
 def setup_db():
