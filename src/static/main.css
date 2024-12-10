@@ -186,6 +186,7 @@ nav {
     justify-content: space-between;
     align-items: stretch;
     height: 3em;
+    padding: 1em;
 }
 
 nav li {
@@ -220,7 +221,7 @@ nav a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left: 1.5em;
+    margin-left: 0.5em;
 }
 
 #language-toggle {
