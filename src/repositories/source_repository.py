@@ -52,7 +52,7 @@ class SourceRepository:
             LEFT JOIN {SCHEMA_NAME}.tag t
             ON t.source_id = s.source_id
 
-            WHERE t.name = '{tag}'
+            WHERE t.name ILIKE '%{tag}%'
 
             GROUP BY s.source_id
             ORDER BY s.source_id
