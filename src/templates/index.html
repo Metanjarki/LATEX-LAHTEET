@@ -107,7 +107,7 @@ endblock %} {% block body %}
         </div>
 
         <div class="content">
-            <label for="add-field-type">Tyyppi</label>
+            <label for="add-field-type"><option value="type">{{content["type"][lang]}}</option></label>
             <select name="kind" id="add-field-type">
                 <option value="book">{{content["book"][lang]}}</option>
                 <option value="article">{{content["article"][lang]}}</option>

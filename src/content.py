@@ -22,6 +22,7 @@ content = {
     "add": {"fi": "Lisää", "en": "Add"},
     "download_sources": {"en": "Download", "fi": "Lataa lähteet"},
     "name": {"fi": "Nimi", "en": "Name"},
+    "type": {"fi": "Tyyppi", "en": "Type"},
     "page_title": {
         "fi": "BibTex -lähdehallintatyökalu",
         "en": "BibTex source management",
