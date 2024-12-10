@@ -216,10 +216,11 @@ nav a:hover {
     background-color: var(--color-lightergray-dark);
 }
 
-#filter-by-tag-form{
+#filter-by-tag-form {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-left: 1.5em;
 }
 
 #language-toggle {

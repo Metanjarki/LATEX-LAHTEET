@@ -73,17 +73,6 @@
     align-items: baseline;
 }
 
-.modal-form button[type='submit'] {
-    align-self: flex-end;
-    margin-top: 2em;
-}
-
-#add-source-btn {
-    position: fixed;
-    bottom: 1em;
-    right: 1em;
-}
-
 .source-list {
     display: flex;
     flex-direction: column;
@@ -249,4 +238,55 @@
     display: block;
 
     transform: scaleX(1.1);
+}
+
+.bottom-buttons {
+    position: fixed;
+    bottom: 1em; 
+    right: 1em; 
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    width: auto; 
+    white-space: nowrap;
+}
+
+
+button.circle,
+a.circle {
+    background-color: var(--color-blue);
+    border-radius: 50%;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    width: 2.4em;
+    height: 2.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color var(--transition-duration) ease-out;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button.circle:hover,
+a.circle:hover {
+    background-color: var(--color-blue-dark);
+}
+
+
+#add-source-btn {
+    background-color: var(--color-blue);
+}
+
+#add-source-btn:hover {
+    background-color: var(--color-blue-dark);
+}
+
+#download-btn {
+    background-color: var(--color-turquoise);
+}
+
+#download-btn:hover {
+    background-color: var(--color-turquoise-dark);
 }

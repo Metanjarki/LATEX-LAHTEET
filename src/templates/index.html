@@ -80,9 +80,17 @@ endblock %} {% block body %}
     </div>
 </div>
 
-<button id="add-source-btn" class="circle" title="{{content["add_source"][lang]}}">
-    <i class="fa-solid fa-plus"></i>
-</button>
+<div class="bottom-buttons">
+    <button id="add-source-btn" class="circle" title="{{ content["add_source"][lang] }}">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+    <a href="/download" id="download-btn" class="circle" title="{{ content["download_sources"][lang] }}">
+        <i class="fa-solid fa-download"></i>
+    </a>
+</div>
+
+
+
 
 <form
     action="/"
