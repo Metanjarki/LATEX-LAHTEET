@@ -20,7 +20,6 @@ content = {
     "filter": {"fi": "Suodata", "en": "Filter"},
     "tag": {"fi": "Tunniste", "en": "Tag"},
     "add": {"fi": "Lisää", "en": "Add"},
-    "add_source": {"en": "Add source", "fi": "Lisää lähde"},
     "download_sources": {"en": "Download", "fi": "Lataa lähteet"},
     "name": {"fi": "Nimi", "en": "Name"},
     "page_title": {
