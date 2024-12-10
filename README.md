@@ -60,3 +60,4 @@ $ psql < sample_data.sql
   - järkevä nimeäminen
   - selkeä ja perusteltu arkkitehtuuri
   - yhtenäinen koodityyli
+
