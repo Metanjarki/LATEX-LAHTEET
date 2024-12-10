@@ -63,7 +63,7 @@ def edit(source_id):
     source = first_item(source_repo.get_full(source_id))
 
     if not source:
-        flash(content["source_not_found"][lang], "error")
+        flash(content["error_source_not_found"][lang], "error")
         return redirect("/")
 
     session["fields"] = json.dumps(source.__dict__)
