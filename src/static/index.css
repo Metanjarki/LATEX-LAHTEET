@@ -2,6 +2,7 @@
 
 #books {
     margin: 1em;
+    margin-top: 6.5em;
 }
 
 .modal-form {
@@ -88,7 +89,7 @@
     box-sizing: border-box;
     cursor: pointer;
     position: relative;
-    max-width: 50%;
+    max-width: 55em;
 }
 
 .source:hover button[type='submit'] {
@@ -169,8 +170,8 @@
 }
 
 .source:hover {
-    border-color: var(--color-turquoise);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-lightblue);
+    box-shadow: 0 6px 10px var(--color-lightblue);
     transform: translateY(-2px);
     transition: all var(--transition-duration) ease-out;
 }
@@ -185,7 +186,7 @@
 .source .tags .tag,
 .source .tags button.add-tag {
     --h-pad: 0.8em;
-    --bg-color: var(--color-turquoise);
+    --bg-color: var(--color-blue);
     background-color: var(--bg-color);
     color: white;
     padding: 0.2em var(--h-pad) 0.1em var(--h-pad);
@@ -197,13 +198,13 @@
 
 .source .tags button.add-tag {
     cursor: pointer;
-    background-color: var(--color-turquoise);
+    background-color: var(--color-blue);
     transition: background-color var(--transition-duration) ease-out;
     padding-top: 0.3em;
 }
 
 .source .tags button.add-tag:hover {
-    background-color: var(--color-turquoise-dark);
+    background-color: var(--color-blue-dark);
 }
 
 .source .tag button.delete {
