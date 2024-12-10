@@ -13,7 +13,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 50;
+    z-index: 101;
     transition: opacity var(--transition-duration) ease-out;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
@@ -40,6 +40,10 @@
     padding: 0.7em 0.6em;
     padding-left: 1.1em;
     padding-bottom: 0;
+}
+
+.modal-form .content button {
+    margin-top: 1em;
 }
 
 .modal-form .inner .content {
@@ -243,15 +247,14 @@
 
 .bottom-buttons {
     position: fixed;
-    bottom: 1em; 
-    right: 1em; 
+    bottom: 1em;
+    right: 1em;
     display: flex;
     flex-direction: row;
     gap: 1em;
-    width: auto; 
+    width: auto;
     white-space: nowrap;
 }
-
 
 button.circle,
 a.circle {
@@ -274,7 +277,6 @@ button.circle:hover,
 a.circle:hover {
     background-color: var(--color-blue-dark);
 }
-
 
 #add-source-btn {
     background-color: var(--color-blue);
