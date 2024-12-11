@@ -1,0 +1,321 @@
+{
+    "indexed": {
+        "date-parts": [
+            [2024, 8, 13]
+        ],
+        "date-time": "2024-08-13T07:50:21Z",
+        "timestamp": 1723535421675
+    },
+    "reference-count": 25,
+    "publisher": "Association for Computing Machinery (ACM)",
+    "issue": "2",
+    "content-domain": {
+        "domain": ["dl.acm.org"],
+        "crossmark-restriction": true
+    },
+    "published-print": {
+        "date-parts": [
+            [2005, 12]
+        ]
+    },
+    "abstract": "<jats:p>\n            In this paper, we describe our ensemble-search based approach,\n            <jats:italic>Q</jats:italic>\n            <jats:sup>2</jats:sup>\n            <jats:italic>C</jats:italic>\n            @\n            <jats:italic>UST</jats:italic>\n            (\n            <jats:bold>http://webprojectl.cs.ust.hk/q2c/</jats:bold>\n            ), for the query classification task for the KDDCUP 2005. There are two aspects to the key difficulties of this problem: one is that the meaning of the queries and the semantics of the predefined categories are hard to determine. The other is that there are no training data for this classification problem. We apply a two-phase framework to tackle the above difficulties. Phase I corresponds to the training phase of machine learning research and phase II corresponds to testing phase. In phase I, two kinds of classifiers are developed as the base classifiers. One is synonym-based and the other is statistics based. Phase II consists of two stages. In the first stage, the queries are enriched such that for each query, its related Web pages together with their category information are collected through the use of search engines. In the second stage, the enriched queries are classified through the base classifiers trained in phase I. Based on the classification results obtained by the base classifiers, two ensemble classifiers based on two different strategies are proposed. The experimental results on the validation dataset help confirm our conjectures on the performance of the Q2C@UST system. In addition, the evaluation results given by the KDDCUP 2005 organizer confirm the effectiveness of our proposed approaches. The best F1 value of our two solutions is 9.6% higher than the best of all other participants' solutions. The average F1 value of our two submitted solutions is 94.4% higher than the average F1 value from all other submitted solutions.\n          </jats:p>",
+    "DOI": "10.1145/1117454.1117467",
+    "type": "journal-article",
+    "created": {
+        "date-parts": [
+            [2007, 1, 17]
+        ],
+        "date-time": "2007-01-17T18:32:02Z",
+        "timestamp": 1169058722000
+    },
+    "page": "100-110",
+    "update-policy": "http://dx.doi.org/10.1145/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 68,
+    "title": "Q\n            <sup>2</sup>\n            C@UST",
+    "prefix": "10.1145",
+    "volume": "7",
+    "author": [
+        {
+            "given": "Dou",
+            "family": "Shen",
+            "sequence": "first",
+            "affiliation": [
+                {
+                    "name": "Hong Kong University of Science and Technology, Kowloon, Hong Kong, China"
+                }
+            ]
+        },
+        {
+            "given": "Rong",
+            "family": "Pan",
+            "sequence": "additional",
+            "affiliation": [
+                {
+                    "name": "Hong Kong University of Science and Technology, Kowloon, Hong Kong, China"
+                }
+            ]
+        },
+        {
+            "given": "Jian-Tao",
+            "family": "Sun",
+            "sequence": "additional",
+            "affiliation": [
+                {
+                    "name": "Hong Kong University of Science and Technology, Kowloon, Hong Kong, China"
+                }
+            ]
+        },
+        {
+            "given": "Jeffrey Junfeng",
+            "family": "Pan",
+            "sequence": "additional",
+            "affiliation": [
+                {
+                    "name": "Hong Kong University of Science and Technology, Kowloon, Hong Kong, China"
+                }
+            ]
+        },
+        {
+            "given": "Kangheng",
+            "family": "Wu",
+            "sequence": "additional",
+            "affiliation": [
+                {
+                    "name": "Hong Kong University of Science and Technology, Kowloon, Hong Kong, China"
+                }
+            ]
+        },
+        {
+            "given": "Jie",
+            "family": "Yin",
+            "sequence": "additional",
+            "affiliation": [
+                {
+                    "name": "Hong Kong University of Science and Technology, Kowloon, Hong Kong, China"
+                }
+            ]
+        },
+        {
+            "given": "Qiang",
+            "family": "Yang",
+            "sequence": "additional",
+            "affiliation": [
+                {
+                    "name": "Hong Kong University of Science and Technology, Kowloon, Hong Kong, China"
+                }
+            ]
+        }
+    ],
+    "member": "320",
+    "published-online": {
+        "date-parts": [
+            [2005, 12]
+        ]
+    },
+    "reference": [
+        {
+            "key": "e_1_2_1_1_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1023/A:1007515423169"
+        },
+        {
+            "key": "e_1_2_1_2_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/347090.347176"
+        },
+        {
+            "key": "e_1_2_1_3_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1023/A:1018054314350"
+        },
+        {
+            "key": "e_1_2_1_4_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1015330.1015432"
+        },
+        {
+            "key": "e_1_2_1_5_1",
+            "volume-title": "Web Search Using Automated Classification. Poster at the Sixth International World Wide Web Conference (WWW6)",
+            "author": "Chekuri C.",
+            "year": "1997"
+        },
+        {
+            "key": "e_1_2_1_6_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/332040.332418"
+        },
+        {
+            "key": "e_1_2_1_7_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.5555/648054.743935"
+        },
+        {
+            "key": "e_1_2_1_8_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/312129.312283"
+        },
+        {
+            "key": "e_1_2_1_9_1",
+            "volume-title": "Proceedings of the Thirteenth International Conference on Machine Learning, 148--156",
+            "author": "Freund Y.",
+            "year": "1996"
+        },
+        {
+            "key": "e_1_2_1_10_1",
+            "unstructured": "Google http://www.google.com]]  Google http://www.google.com]]"
+        },
+        {
+            "key": "e_1_2_1_11_1",
+            "volume-title": "Elementary Statistics",
+            "author": "Hoel P. G.",
+            "year": "1971"
+        },
+        {
+            "key": "e_1_2_1_12_1",
+            "volume-title": "Proc. 16th International Conference on Machine Learning (ICML)",
+            "author": "Joachims T.",
+            "year": "1999"
+        },
+        {
+            "key": "e_1_2_1_13_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.5555/645326.649721"
+        },
+        {
+            "key": "e_1_2_1_14_1",
+            "volume-title": "Automatic Keyword Classification for Information Retrieval",
+            "author": "Jones K. S.",
+            "year": "1971"
+        },
+        {
+            "key": "e_1_2_1_15_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/860435.860449"
+        },
+        {
+            "key": "e_1_2_1_16_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1109/34.667881"
+        },
+        {
+            "key": "e_1_2_1_17_1",
+            "unstructured": "Lemur http://www.lemurproject.org/]]  Lemur http://www.lemurproject.org/]]"
+        },
+        {
+            "key": "e_1_2_1_18_1",
+            "first-page": "3",
+            "volume-title": "Proceedings of SIGIR-94, 17th ACM International Conference on Research and Development in Information Retrieval",
+            "author": "Lewis D. D.",
+            "year": "1994"
+        },
+        {
+            "key": "e_1_2_1_19_1",
+            "volume-title": "Presentation on The Eleventh ACM SIGKDD International Conference on Knowledge Discovery and Data Mining",
+            "author": "Li Y.",
+            "year": "2005"
+        },
+        {
+            "key": "e_1_2_1_20_1",
+            "unstructured": "Looksmart http://www.looksmart.com.]]  Looksmart http://www.looksmart.com.]]"
+        },
+        {
+            "key": "e_1_2_1_21_1",
+            "unstructured": "ODP\n  : Open Directory Project http://dmoz.com]]  ODP: Open Directory Project http://dmoz.com]]"
+        },
+        {
+            "key": "e_1_2_1_22_1",
+            "volume-title": "The PageRank citation ranking: Bringing order to the web. Technical report",
+            "author": "Page L.",
+            "year": "1998"
+        },
+        {
+            "key": "e_1_2_1_23_1",
+            "volume-title": "proceedings of the Thirteenth National Conference on Artificial Intelligence, 725--730",
+            "author": "Quinlan J. R.",
+            "year": "1996"
+        },
+        {
+            "key": "e_1_2_1_24_1",
+            "first-page": "176",
+            "volume": "173",
+            "author": "van Rijsbergen C. J.",
+            "year": "1979",
+            "journal-title": "London"
+        },
+        {
+            "key": "e_1_2_1_25_1",
+            "unstructured": "Wordnet http://wordnet.princeton.edu/]]  Wordnet http://wordnet.princeton.edu/]]"
+        }
+    ],
+    "container-title": "ACM SIGKDD Explorations Newsletter",
+    "original-title": [],
+    "language": "en",
+    "link": [
+        {
+            "URL": "https://dl.acm.org/doi/pdf/10.1145/1117454.1117467",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+        }
+    ],
+    "deposited": {
+        "date-parts": [
+            [2022, 12, 28]
+        ],
+        "date-time": "2022-12-28T19:33:22Z",
+        "timestamp": 1672256002000
+    },
+    "score": 1,
+    "resource": {
+        "primary": {
+            "URL": "https://dl.acm.org/doi/10.1145/1117454.1117467"
+        }
+    },
+    "subtitle": [
+        "our winning solution to query classification in KDDCUP 2005"
+    ],
+    "short-title": [],
+    "issued": {
+        "date-parts": [
+            [2005, 12]
+        ]
+    },
+    "references-count": 25,
+    "journal-issue": {
+        "issue": "2",
+        "published-print": {
+            "date-parts": [
+                [2005, 12]
+            ]
+        }
+    },
+    "alternative-id": [
+        "10.1145/1117454.1117467"
+    ],
+    "URL": "http://dx.doi.org/10.1145/1117454.1117467",
+    "relation": {},
+    "ISSN": [
+        "1931-0145",
+        "1931-0153"
+    ],
+    "subject": [],
+    "container-title-short": "SIGKDD Explor. Newsl.",
+    "published": {
+        "date-parts": [
+            [2005, 12]
+        ]
+    },
+    "assertion": [
+        {
+            "value": "2005-12-01",
+            "order": 2,
+            "name": "published",
+            "label": "Published",
+            "group": {
+                "name": "publication_history",
+                "label": "Publication History"
+            }
+        }
+    ]
+}

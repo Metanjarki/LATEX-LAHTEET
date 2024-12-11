@@ -1,0 +1,257 @@
+{
+    "indexed": {
+        "date-parts": [
+            [2024, 9, 14]
+        ],
+        "date-time": "2024-09-14T14:21:31Z",
+        "timestamp": 1726323691575
+    },
+    "publisher-location": "New York, NY, USA",
+    "reference-count": 19,
+    "publisher": "ACM",
+    "content-domain": {
+        "domain": ["dl.acm.org"],
+        "crossmark-restriction": true
+    },
+    "published-print": {
+        "date-parts": [
+            [2010, 7, 19]
+        ]
+    },
+    "DOI": "10.1145/1835449.1835525",
+    "type": "proceedings-article",
+    "created": {
+        "date-parts": [
+            [2010, 7, 20]
+        ],
+        "date-time": "2010-07-20T15:39:10Z",
+        "timestamp": 1279640350000
+    },
+    "update-policy": "http://dx.doi.org/10.1145/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 101,
+    "title": "Context-aware ranking in web search",
+    "prefix": "10.1145",
+    "author": [
+        {
+            "given": "Biao",
+            "family": "Xiang",
+            "sequence": "first",
+            "affiliation": [
+                {
+                    "name": "University of Science and Technology of China, Hefei, China"
+                }
+            ]
+        },
+        {
+            "given": "Daxin",
+            "family": "Jiang",
+            "sequence": "additional",
+            "affiliation": [
+                {
+                    "name": "Microsoft Research Asia, Beijing, China"
+                }
+            ]
+        },
+        {
+            "given": "Jian",
+            "family": "Pei",
+            "sequence": "additional",
+            "affiliation": [
+                {
+                    "name": "Simon Fraser University, Burnaby, Canada"
+                }
+            ]
+        },
+        {
+            "given": "Xiaohui",
+            "family": "Sun",
+            "sequence": "additional",
+            "affiliation": [
+                {
+                    "name": "Microsoft Research Asia, Beijing, China"
+                }
+            ]
+        },
+        {
+            "given": "Enhong",
+            "family": "Chen",
+            "sequence": "additional",
+            "affiliation": [
+                {
+                    "name": "University of Science and Technology of China, Hefei, China"
+                }
+            ]
+        },
+        {
+            "given": "Hang",
+            "family": "Li",
+            "sequence": "additional",
+            "affiliation": [
+                {
+                    "name": "Microsoft Research Asia, Beijing, China"
+                }
+            ]
+        }
+    ],
+    "member": "320",
+    "published-online": {
+        "date-parts": [
+            [2010, 7, 19]
+        ]
+    },
+    "reference": [
+        {
+            "key": "e_1_3_2_1_1_1",
+            "unstructured": "Borda J.C. Memoire sur les elections au scrution. Histoire del'Academie Royal des Sciences 1781.  Borda J.C. Memoire sur les elections au scrution. Histoire del'Academie Royal des Sciences 1781."
+        },
+        {
+            "key": "e_1_3_2_1_2_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1401890.1401995"
+        },
+        {
+            "key": "e_1_3_2_1_3_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1571941.1571945"
+        },
+        {
+            "key": "e_1_3_2_1_4_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1526709.1526736"
+        },
+        {
+            "key": "e_1_3_2_1_5_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1242572.1242651"
+        },
+        {
+            "key": "e_1_3_2_1_6_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1498759.1498818"
+        },
+        {
+            "key": "e_1_3_2_1_7_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/775047.775067"
+        },
+        {
+            "key": "e_1_3_2_1_8_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1076034.1076063"
+        },
+        {
+            "key": "e_1_3_2_1_9_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1135777.1135835"
+        },
+        {
+            "key": "e_1_3_2_1_10_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.5555/317328.317340"
+        },
+        {
+            "key": "e_1_3_2_1_11_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.5555/1717952"
+        },
+        {
+            "key": "e_1_3_2_1_12_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1135777.1135883"
+        },
+        {
+            "key": "e_1_3_2_1_13_1",
+            "volume-title": "ASIST\"01",
+            "author": "Rieh S.Y.",
+            "year": "2001",
+            "unstructured": "Rieh , S.Y. and Xie , H . Patterns and sequences of multiple query reformulations in web searching: a preliminary study . In ASIST'01 , 2001 . Rieh, S.Y. and Xie, H. Patterns and sequences of multiple query reformulations in web searching: a preliminary study. In ASIST'01, 2001."
+        },
+        {
+            "key": "e_1_3_2_1_14_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1117454.1117467"
+        },
+        {
+            "key": "e_1_3_2_1_15_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1076034.1076045"
+        },
+        {
+            "key": "e_1_3_2_1_16_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1150402.1150493"
+        },
+        {
+            "key": "e_1_3_2_1_17_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1076034.1076111"
+        },
+        {
+            "key": "e_1_3_2_1_18_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1277741.1277770"
+        },
+        {
+            "key": "e_1_3_2_1_19_1",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/1277741.1277771"
+        }
+    ],
+    "event": "SIGIR '10: The 33rd International ACM SIGIR conference on research and development in Information Retrieval",
+    "container-title": "Proceedings of the 33rd international ACM SIGIR conference on Research and development in information retrieval",
+    "original-title": [],
+    "link": [
+        {
+            "URL": "https://dl.acm.org/doi/pdf/10.1145/1835449.1835525",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+        }
+    ],
+    "deposited": {
+        "date-parts": [
+            [2023, 4, 18]
+        ],
+        "date-time": "2023-04-18T03:27:38Z",
+        "timestamp": 1681788458000
+    },
+    "score": 1,
+    "resource": {
+        "primary": {
+            "URL": "https://dl.acm.org/doi/10.1145/1835449.1835525"
+        }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+        "date-parts": [
+            [2010, 7, 19]
+        ]
+    },
+    "references-count": 19,
+    "alternative-id": [
+        "10.1145/1835449.1835525",
+        "10.1145/1835449"
+    ],
+    "URL": "http://dx.doi.org/10.1145/1835449.1835525",
+    "relation": {},
+    "subject": [],
+    "published": {
+        "date-parts": [
+            [2010, 7, 19]
+        ]
+    },
+    "assertion": [
+        {
+            "value": "2010-07-19",
+            "order": 2,
+            "name": "published",
+            "label": "Published",
+            "group": {
+                "name": "publication_history",
+                "label": "Publication History"
+            }
+        }
+    ]
+}

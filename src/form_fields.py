@@ -13,14 +13,16 @@ class FormField:  # pylint: disable=too-few-public-methods
 fields = {
     "common": [
         FormField("bibtex_key", True),
-        FormField("title", True),
-        FormField("year", True),
     ],
     "book": [
+        FormField("title", True),
+        FormField("year", True),
         FormField("author", True),
         FormField("publisher", True),
     ],
     "article": [
+        FormField("title", True),
+        FormField("year", True),
         FormField("author", True),
         FormField("journal", True),
         FormField("volume", False, "number"),
@@ -29,6 +31,8 @@ fields = {
         FormField("month"),
     ],
     "inproceedings": [
+        FormField("title", True),
+        FormField("year", True),
         FormField("author", True),
         FormField("booktitle", True),
         FormField("editor"),
@@ -39,6 +43,9 @@ fields = {
         FormField("organization"),
         FormField("publisher"),
         FormField("volume", False, "number"),
+    ],
+    "doi": [
+        FormField("doi", True)
     ],
 }
 

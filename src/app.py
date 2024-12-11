@@ -1,5 +1,7 @@
 from io import BytesIO
+import calendar
 
+import requests
 from flask import flash, json, redirect, render_template, request, send_file, session
 
 from database_service import DatabaseService
@@ -16,7 +18,7 @@ from repositories.book_repository import BookRepository
 from repositories.inproceedings_repository import InproceedingsRepository
 from repositories.source_repository import SourceRepository
 from repositories.tag_repository import TagRepository
-from util import UserInputError, first_item, to_bibtex
+from util import UserInputError, first_item, to_bibtex, try_parse_int
 
 
 @app.route("/", methods=["GET"])
@@ -73,7 +75,7 @@ def edit(source_id):
 
 
 @app.route("/", methods=["POST"])
-def index_post():
+def index_post():  # pylint: disable=too-many-locals,too-many-branches,too-many-statements
     form = request.form
     lang = session.get("lang", "fi")
 
@@ -181,6 +183,147 @@ def index_post():
                     inproceedings_repo.update(inproceedings)
                 else:
                     inproceedings_repo.create(inproceedings)
+
+            case "doi":
+                rawdoi = form["doi"]
+                doisplit = rawdoi.split("doi.org/")
+                if len(doisplit) > 1:
+                    doi = doisplit[1]
+                else:
+                    doi = doisplit[0]
+
+                url = "https://doi.org/" + doi
+                headers = { "Accept": "application/vnd.citationstyles.csl+json" }
+                timeout = 10
+                res = requests.get(url, headers=headers, timeout=timeout)
+
+                if res.status_code == 200:
+                    doi_form = res.json()
+                elif res.status_code in [404, 400]:
+                    flash(content["error_source_not_found"][lang], "error")
+                    return redirect("/?show_add_form")
+                else:
+                    flash(content["error_common"][lang], "error")
+                    return redirect("/?show_add_form")
+
+                doi_source_type = doi_form["type"] if "type" in doi_form else ""
+                doi_title = str(doi_form["title"]) if "title" in doi_form else "unknown title"
+                doi_year = (
+                    str(doi_form["published"]["date-parts"][0][0])
+                    if "published" in doi_form
+                    else "0000"
+                )
+                doi_author = (
+                    ", ".join([
+                        f"{author['given']} {author['family']}"
+                        for author in doi_form["author"]
+                    ])
+                    if "author" in doi_form
+                    else "unknown author"
+                )
+                match doi_source_type:
+                    case "book":
+                        book = Book(
+                            {
+                                "source_id": source_id,
+                                "bibtex_key": bibtex_key,
+                                "title": doi_title,
+                                "year": doi_year,
+                                "author": doi_author,
+                                "source_book_id": 0,
+                                "publisher": (
+                                    doi_form["publisher"]
+                                    if "publisher" in doi_form
+                                    else ""
+                                ),
+                            }
+                        )
+
+                        book_repo.create(book)
+
+                    case "journal-article":
+                        article = Article(
+                            {
+                                "source_id": source_id,
+                                "bibtex_key": bibtex_key,
+                                "title": doi_title,
+                                "year": doi_year,
+                                "author": doi_author,
+                                "source_article_id": 0,
+                                "journal": (
+                                    doi_form["container-title"]
+                                    if "container-title" in doi_form
+                                    else "unknown journal"
+                                ),
+                                "volume": doi_form["volume"] if "volume" in doi_form else "",
+                                "number": (
+                                    doi_form["journal-issue"]["issue"]
+                                    if "journal-issue" in doi_form # tää on ihanan standardisoitu ¦)
+                                    and try_parse_int(
+                                        doi_form["journal-issue"]["issue"]
+                                    ) is not None
+                                    else ""
+                                ),
+                                "pages": doi_form["page"] if "page" in doi_form else "",
+                                "month": (
+                                    calendar.month_name[
+                                        doi_form["published"]["date-parts"][0][1]
+                                    ] if len(doi_form["published"]["date-parts"]) > 1
+                                    else "",
+                                ),
+                            }
+                        )
+
+                        article_repo.create(article)
+
+                    case "proceedings-article":
+                        inproceedings = Inproceedings(
+                            {
+                                "source_id": source_id,
+                                "bibtex_key": bibtex_key,
+                                "title": doi_title,
+                                "year": doi_year,
+                                "author": doi_author,
+                                "source_inproceedings_id": "",
+                                "booktitle": (
+                                    doi_form["container-title"]
+                                    if "container-title" in doi_form
+                                    else "unknown book title"
+                                ),
+                                "editor": form["editor"] if "editor" in form else "",
+                                "series": form["series"] if "series" in form else "",
+                                "pages": doi_form["page"] if "page" in doi_form else "",
+                                "address": (
+                                    doi_form["publisher-location"]
+                                    if "publisher-location" in doi_form
+                                    else ""
+                                ),
+                                "month": (
+                                    calendar.month_name[
+                                        doi_form["published"]["date-parts"][0][1]
+                                    ] if len(doi_form["published"]["date-parts"]) > 1
+                                    else "",
+                                ),
+                                "organization": (
+                                    form["organization"]
+                                    if "organization" in form
+                                    else ""
+                                ),
+                                "publisher": (
+                                    doi_form["publisher"]
+                                    if "publisher" in doi_form
+                                    else ""
+                                ),
+                                "volume": form["volume"] if "volume" in form else "",
+                            }
+                        )
+
+                        inproceedings_repo.create(inproceedings)
+
+
+                    case _:
+                        flash(content["error_not_supported"][lang], "error")
+                        return redirect("/?show_add_form")
 
             case _:
                 flash(content["error_not_supported"][lang], "error")

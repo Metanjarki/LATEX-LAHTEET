@@ -39,6 +39,10 @@ content = {
         "fi": "Artikkeli konferenssijulkaisussa",
         "en": "Inproceedings",
     },
+    "doi": {
+        "fi": "DOI-tunnus",
+        "en": "DOI-identifier",
+    },
     "error_source_not_found": {
         "fi": "Lähdettä ei ole olemassa",
         "en": "Source not found",
