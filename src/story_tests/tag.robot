@@ -31,22 +31,27 @@ Can add tag
     Input Publisher  Otava
     Publish Source
 
+    Wait Until Element Is Visible  books
     Page Should Contain  tolkien
     Page Should Contain  tolkien2
 
 
+    Wait Until Element Is Visible  books
     Click Button  css:article:first-child button.add-tag
     Input Text  name  tagi1
     Publish Tag
 
+    Wait Until Element Is Visible  books
     Click Button  css:article:first-child button.add-tag
     Input Text  name  tagi2
     Publish Tag
 
+    Wait Until Element Is Visible  books
     Click Button  css:article:last-child button.add-tag
     Input Text  name  tagi3
     Publish Tag
 
+    Wait Until Element Is Visible  books
     Page Should Contain  tagi1
     Page Should Contain  tagi2
     Page Should Contain  tagi3
@@ -62,7 +67,7 @@ Can delete tag
     Input Publisher  Otava
     Publish Source
 
-    Page Should Contain  tolkien
+    Page Should Contain Key  tolkien
 
     Click Button  css:article:first-child button.add-tag
     Input Text  name  tagi1
