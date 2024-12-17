@@ -11,6 +11,9 @@ Sovellukseen voi lisätä lähteitä muodoissa kirja, artikkeli ja artikkeli kon
 ## Backlog
 Nykyisen backlogin voi nähdä [täältä](https://docs.google.com/spreadsheets/d/1M5kKUjORXVepBhWVwGJPqX7DncR86aFn1dlTe7wg358/edit?usp=sharing)
 
+## Loppuraportti
+Projektin [loppuraportti](https://docs.google.com/document/d/1tsXXhZc8rhzEWW-7jd8lPenl7jETmspqIEKkhDAKwqk/edit?tab=t.0)
+
 ## Asennus
 Asenna projektin riippuvuudet ajamalla komennon `poetry install`. Tämän jälkeen laita projektin juureen `.env` -niminen tiedosto, joka sisältää ainakin seuraavat tiedot.
 
